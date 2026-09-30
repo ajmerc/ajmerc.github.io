@@ -8,6 +8,32 @@
   <link rel="canonical" href="https://ajmerc.github.io/research/">
   <!-- Google Search Console: paste the <meta name="google-site-verification" ...> tag on the line below. -->
 
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="AJ Schwartz">
+  <meta property="og:title" content="AJ Schwartz | Psycholinguistics Research, UC San Diego">
+  <meta property="og:description" content="How speakers plan and time their speech for the person they're talking to, and what happens when video calling gets in the way.">
+  <meta property="og:url" content="https://ajmerc.github.io/research/">
+  <meta property="og:image" content="https://ajmerc.github.io/assets/img/og-image.png">
+  <meta property="og:image:alt" content="AJ Schwartz: research and illustration">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Structured data for search engines. When you have them, add your Google Scholar,
+       ORCID, LinkedIn, and lab profile URLs to a "sameAs": [ ... ] list (and nothing else). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "AJ Schwartz",
+    "alternateName": "Avery Schwartz",
+    "url": "https://ajmerc.github.io/",
+    "email": "mailto:avschwartz@ucsd.edu",
+    "jobTitle": "PhD Student, Experimental Psychology",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "University of California, San Diego" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Washington University in St. Louis" },
+    "knowsAbout": ["Psycholinguistics", "Language production", "Turn-taking", "Audience design", "Computer-mediated communication"]
+  }
+  </script>
+
   <link rel="stylesheet" href="../assets/css/site.css">
   <script src="../assets/js/wipe.js" defer></script>
 </head>
@@ -20,6 +46,8 @@
           <li><a href="#about">About</a></li>
           <li><a href="#themes">Research</a></li>
           <li><a href="#papers">Papers</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="../cv.pdf">CV</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -27,33 +55,158 @@
   </header>
 
   <main class="container">
-    <section class="hero" id="about">
+    <section class="hero">
       <p class="eyebrow">Research</p>
       <h1>AJ Schwartz</h1>
       <p class="role">PhD Student, Experimental Psychology (Psycholinguistics), UC San Diego</p>
       <p class="lede">I study how people plan and time their speech for the person they’re talking to, and what happens when a medium like video calling gets in the way.</p>
+      <ul class="links">
+        <li><a href="mailto:avschwartz@ucsd.edu">Email</a></li>
+        <li><a href="../cv.pdf">CV (PDF)</a></li>
+      </ul>
     </section>
 
+    <!-- ===== About ===== -->
+    <section class="section section--split" id="about">
+      <h2>About</h2>
+      <div class="prose">
+        <p>I’m a PhD student in Experimental Psychology at UC San Diego, where I work in the Language Production Lab with Victor Ferreira.</p>
+        <p>My research is about language production. I look at how speakers tailor what they say to their listener (<em>audience design</em>), and at the split-second timing of who speaks when (<em>turn-taking</em>).</p>
+        <p>Video calls make a useful natural experiment. Audio delay and a flattened visual channel disrupt the cues people normally use to coordinate, which shows what conversation depends on. I also study how people judge a speaker’s confidence from the way they talk, and, more recently, how large language models compare to humans on those judgments.</p>
+        <p>Before UC San Diego, I was a research technician at Washington University in St. Louis, where I also wrote an honors thesis on second-language vocabulary learning.</p>
+      </div>
+    </section>
+
+    <!-- ===== Research themes ===== -->
     <section class="section" id="themes">
       <h2>Research themes</h2>
       <ul class="cards">
         <li class="card">
           <span class="card__num">01</span>
           <h3>Conversation over video calls</h3>
-          <p>How audio delay and a flattened visual channel affect the timing of turn-taking, and how speakers come across.</p>
+          <p>How audio delay and a reduced visual channel affect turn-taking and how speakers come across. I run in-lab, two-person conversation experiments and measure the timing between turns (floor-transfer offsets).</p>
         </li>
         <li class="card">
           <span class="card__num">02</span>
           <h3>Judging speaker confidence</h3>
-          <p>How listeners hear confidence in the way someone talks, and whether reading a transcript changes that judgment.</p>
+          <p>How listeners perceive a speaker’s confidence from how they talk, and how that changes when they read a transcript instead of hearing the audio.</p>
         </li>
         <li class="card">
           <span class="card__num">03</span>
           <h3>Humans and LLMs as language judges</h3>
-          <p>How large language models compare to human raters when judging confidence in dialogue.</p>
+          <p>Comparing large language models to human raters on confidence judgments of dialogue. Some models track human judgments closely; others get pulled off course by whether the answer being given is actually correct.</p>
         </li>
       </ul>
-      <p class="placeholder-note">Prototype page. Papers, CV, skills, teaching, outreach, and contact come next, after you’ve reviewed the landing page.</p>
+    </section>
+
+    <!-- ===== Papers, posters, and talks =====
+         To add one, copy a whole <li class="pub"> ... </li> block and paste it at the top of the list. -->
+    <section class="section section--split" id="papers">
+      <h2>Papers, posters &amp; talks</h2>
+      <ul class="pubs">
+        <li class="pub">
+          <span class="pub__year">2026</span>
+          <div>
+            <p class="pub__cite">Schwartz, A. J., &amp; Ferreira, V. S. <cite>Some LLMs Just Can’t Help Using What They Know.</cite></p>
+            <p class="pub__venue">Poster, Psychonomic Society Annual Meeting, November 2026 (upcoming).</p>
+          </div>
+        </li>
+        <li class="pub">
+          <span class="pub__year">2026</span>
+          <div>
+            <p class="pub__cite">Schwartz, A. J. <cite>Misattribution of Delay in Turn-Taking on Speaker Judgments.</cite></p>
+            <p class="pub__venue">Master’s thesis, UC San Diego. Presented at the Society for Personality and Social Psychology (SPSP) conference, 2026.</p>
+          </div>
+        </li>
+        <li class="pub">
+          <span class="pub__year">[YEAR]</span>
+          <div>
+            <p class="pub__cite">Schwartz, A. J. <cite>Input Variability and Second Language Vocabulary Acquisition.</cite></p>
+            <p class="pub__venue">Honors thesis, Washington University in St. Louis. Presented at the WashU undergraduate research symposium.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== Background: education and research positions ===== -->
+    <section class="section section--split" id="background">
+      <h2>Background</h2>
+      <div>
+        <h3 class="subhead">Education</h3>
+        <ul class="timeline">
+          <li><div><strong>PhD, Experimental Psychology</strong> (in progress)<br><span>UC San Diego</span></div><span class="timeline__date">2024–</span></li>
+          <li><div><strong>MA, Psychology</strong><br><span>UC San Diego</span></div><span class="timeline__date">2025</span></li>
+          <li><div><strong>BA, Cognitive Neuroscience</strong>, Honors, Cum Laude; Minor in Art<br><span>Washington University in St. Louis</span></div><span class="timeline__date">2023</span></li>
+        </ul>
+        <h3 class="subhead">Research positions</h3>
+        <ul class="timeline">
+          <li><div><strong>Graduate Researcher</strong>, Language Production Lab (PI: Victor Ferreira)<br><span>UC San Diego</span></div><span class="timeline__date">2024–</span></li>
+          <li><div><strong>Research Technician</strong>, Speech &amp; Hearing Lab<br><span>Washington University in St. Louis</span></div><span class="timeline__date">2020–2024</span></li>
+          <li><div><strong>Research Technician</strong>, Cognitive Control &amp; Psychopathology Lab<br><span>Washington University in St. Louis</span></div><span class="timeline__date">2021–2024</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Methods and skills ===== -->
+    <section class="section section--split" id="skills">
+      <h2>Methods &amp; skills</h2>
+      <div class="skills">
+        <div>
+          <h3 class="subhead">Experiments</h3>
+          <p>In-lab and online experiments, including two-person conversation studies. Survey design and counterbalancing in Qualtrics. EEG and fMRI data collection and processing.</p>
+        </div>
+        <div>
+          <h3 class="subhead">Audio &amp; data pipelines</h3>
+          <p>ffmpeg, WhisperX transcription, speaker diarization, audio sync, and cross-talk cleanup. LLM-assisted analysis across multiple model APIs. Reproducible, documented pipelines.</p>
+        </div>
+        <div>
+          <h3 class="subhead">Statistics</h3>
+          <p>R (tidyverse, lme4, ggplot2) and Python. ANOVA and F-tests, correlational analysis, and effect sizes.</p>
+        </div>
+        <div>
+          <h3 class="subhead">Research infrastructure</h3>
+          <p>Building data-entry systems and research infrastructure for research assistant teams, and recruiting and training research assistants.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Teaching ===== -->
+    <section class="section section--split" id="teaching">
+      <h2>Teaching</h2>
+      <div class="prose">
+        <p><strong>Teaching Assistant</strong>, UC San Diego, 2024–present</p>
+        <ul>
+          <li><strong>Research Methods in Psychology:</strong> taught experimental design, data management, and statistical analysis, including lectures on ANOVA and APA-style writing.</li>
+          <li><strong>Psychology of Language:</strong> guest lecture on language production (the Levelt model).</li>
+          <li>Also Memory and Amnesia, Psychology and the Law, and Criminology.</li>
+          <li>Led a student journal club on language production for undergraduate research assistants.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Outreach and community ===== -->
+    <section class="section section--split" id="outreach">
+      <h2>Outreach</h2>
+      <ul class="timeline">
+        <li><div><strong>Exhibit Floor Volunteer</strong><br><span>Fleet Science Center, San Diego</span></div><span class="timeline__date">2026–</span></li>
+        <li><div><strong>Co-Founder &amp; Co-President</strong>, CARD/BOARD campus board game library<br><span>Washington University in St. Louis</span></div><span class="timeline__date">2021–2022</span></li>
+      </ul>
+    </section>
+
+    <!-- ===== Contact =====
+         Replace each [URL] placeholder with a real link, e.g. <li><a href="https://orcid.org/...">ORCID</a></li> -->
+    <section class="section section--split" id="contact">
+      <h2>Contact</h2>
+      <div class="prose">
+        <p>The best way to reach me is email: <a href="mailto:avschwartz@ucsd.edu">avschwartz@ucsd.edu</a></p>
+        <ul class="links">
+          <li><a href="../cv.pdf">CV (PDF)</a></li>
+          <li><span class="placeholder">Google Scholar [URL]</span></li>
+          <li><span class="placeholder">ORCID [URL]</span></li>
+          <li><span class="placeholder">LinkedIn [URL]</span></li>
+          <li><span class="placeholder">Lab profile [URL]</span></li>
+        </ul>
+      </div>
     </section>
   </main>
 
