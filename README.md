@@ -3,7 +3,7 @@ Personal Website for Avery (AJ) Schwartz
 
 Plain HTML, CSS, and a little vanilla JavaScript. There's no build step: push to `main` and GitHub Pages serves it.
 
-> **Status:** landing and research pages are built. The illustration page is waiting on portfolio images.
+> **Status:** all three pages are built. The illustration page still needs a Sketches & concepts gallery.
 
 ## Layout
 
@@ -28,6 +28,11 @@ On the landing page, the `<h1>` has a `data-text` attribute. Keep it identical t
 ## Adding a paper, poster, or talk
 
 In `research/index.html`, find the `Papers, posters, and talks` comment. Copy a whole `<li class="pub"> … </li>` block, paste it at the top of the list, and edit the year, authors, title, and venue.
+
+## Adding a portfolio piece
+
+1. Make three versions of the image: an 800px-wide `.webp` and `.jpg`, and an 1800px-wide `.webp` ending in `-large`. Name them like the others in `assets/img/portfolio/` (for example `aj-schwartz-print-rabbit.webp`).
+2. In `illustration/index.html`, find the `Galleries` comment, copy a whole `<li class="piece"> … </li>` block into the right gallery, and change the file names, `width`/`height` (of the 800px version), and `alt` text. Describe what's in the picture and end with "digital illustration by AJ Schwartz" or "print by AJ Schwartz".
 
 ## Adding your profile links
 

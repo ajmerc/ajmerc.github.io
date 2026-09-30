@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AJ Schwartz | Illustration &amp; Printmaking</title>
-  <meta name="description" content="Digital illustration and printmaking by AJ Schwartz: finished illustrations, prints, sketches, and concepts.">
+  <meta name="description" content="Digital illustrations and prints by AJ Schwartz, from character portraits to band posters.">
   <link rel="canonical" href="https://ajmerc.github.io/illustration/">
   <!-- Google Search Console: paste the <meta name="google-site-verification" ...> tag on the line below. -->
 
@@ -32,7 +32,8 @@
       <nav class="site-nav" aria-label="Illustration sections">
         <ul>
           <li><a href="#about">About</a></li>
-          <li><a href="#work">Work</a></li>
+          <li><a href="#illustration">Illustration</a></li>
+          <li><a href="#printmaking">Printmaking</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -40,36 +41,126 @@
   </header>
 
   <main class="container">
+    <!-- ===== Artist statement ===== -->
     <section class="hero" id="about">
       <p class="eyebrow">Illustration &amp; Printmaking</p>
       <h1>AJ Schwartz</h1>
       <p class="role">Illustrator and printmaker</p>
       <p class="lede">I make digital illustrations and prints.</p>
+      <div class="prose statement">
+        <p>I minored in art at Washington University in St. Louis, and spent three summers as the art specialist at a children’s summer camp, designing and teaching the art curriculum. Lately I’ve been experimenting with code-driven and generative art.</p>
+      </div>
     </section>
 
-    <section class="section" id="work">
-      <h2>Series</h2>
-      <ul class="cards">
-        <li class="card">
-          <div class="frame"><span>[IMAGES]</span></div>
-          <span class="card__num">01</span>
-          <h3>Illustration</h3>
-          <p>Finished digital illustrations.</p>
+    <!-- ===== Galleries =====
+         To add a piece: put a small (800px wide) .webp and .jpg and a large (1800px) .webp in
+         assets/img/portfolio/, then copy a whole <li class="piece"> ... </li> block and change
+         the file names, width/height, and alt text. -->
+    <section class="section" id="illustration">
+      <h2>Illustration</h2>
+      <ul class="gallery">
+        <li class="piece">
+          <a href="../assets/img/portfolio/aj-schwartz-illustration-fox-portrait-large.webp">
+            <picture>
+              <source type="image/webp" srcset="../assets/img/portfolio/aj-schwartz-illustration-fox-portrait.webp">
+              <img src="../assets/img/portfolio/aj-schwartz-illustration-fox-portrait.jpg" width="800" height="934" loading="lazy" decoding="async" alt="Portrait of a man with golden eyes holding a howling fox against an orange sunburst, digital illustration by AJ Schwartz">
+            </picture>
+          </a>
         </li>
-        <li class="card">
-          <div class="frame"><span>[IMAGES]</span></div>
-          <span class="card__num">02</span>
-          <h3>Printmaking</h3>
-          <p>Prints and printed matter.</p>
+        <li class="piece">
+          <a href="../assets/img/portfolio/aj-schwartz-illustration-sentinel-comic-cover-large.webp">
+            <picture>
+              <source type="image/webp" srcset="../assets/img/portfolio/aj-schwartz-illustration-sentinel-comic-cover.webp">
+              <img src="../assets/img/portfolio/aj-schwartz-illustration-sentinel-comic-cover.jpg" width="800" height="1191" loading="lazy" decoding="async" alt="Comic book cover titled “Sentinel,” with a hero crouching and reaching toward the viewer, digital illustration by AJ Schwartz">
+            </picture>
+          </a>
         </li>
-        <li class="card">
-          <div class="frame"><span>[IMAGES]</span></div>
-          <span class="card__num">03</span>
-          <h3>Sketches &amp; concepts</h3>
-          <p>Sketchbook pages, studies, and early ideas.</p>
+        <li class="piece">
+          <a href="../assets/img/portfolio/aj-schwartz-illustration-horned-figure-large.webp">
+            <picture>
+              <source type="image/webp" srcset="../assets/img/portfolio/aj-schwartz-illustration-horned-figure.webp">
+              <img src="../assets/img/portfolio/aj-schwartz-illustration-horned-figure.jpg" width="800" height="1078" loading="lazy" decoding="async" alt="A horned figure with a long tail sitting on a ledge in a dark room beside a glowing lamp, digital illustration by AJ Schwartz">
+            </picture>
+          </a>
+        </li>
+        <li class="piece">
+          <a href="../assets/img/portfolio/aj-schwartz-illustration-cry-it-out-large.webp">
+            <picture>
+              <source type="image/webp" srcset="../assets/img/portfolio/aj-schwartz-illustration-cry-it-out.webp">
+              <img src="../assets/img/portfolio/aj-schwartz-illustration-cry-it-out.jpg" width="800" height="1067" loading="lazy" decoding="async" alt="Tearful eyes above a stream of tears running into a grassy pond, with the words “Cry it out,” digital illustration by AJ Schwartz">
+            </picture>
+          </a>
+        </li>
+        <li class="piece">
+          <a href="../assets/img/portfolio/aj-schwartz-illustration-studio-portrait-large.webp">
+            <picture>
+              <source type="image/webp" srcset="../assets/img/portfolio/aj-schwartz-illustration-studio-portrait.webp">
+              <img src="../assets/img/portfolio/aj-schwartz-illustration-studio-portrait.jpg" width="800" height="1122" loading="lazy" decoding="async" alt="Two figures in a sunlit studio with arched windows, one drawing a portrait at an easel while the other reads, digital illustration by AJ Schwartz">
+            </picture>
+          </a>
         </li>
       </ul>
-      <p class="placeholder-note">Prototype page. The portfolio grid, artist statement, and contact come next, after you’ve reviewed the landing page.</p>
+    </section>
+
+    <section class="section" id="printmaking">
+      <h2>Printmaking</h2>
+      <ul class="gallery">
+        <li class="piece">
+          <a href="../assets/img/portfolio/aj-schwartz-print-tapeworms-poster-large.webp">
+            <picture>
+              <source type="image/webp" srcset="../assets/img/portfolio/aj-schwartz-print-tapeworms-poster.webp">
+              <img src="../assets/img/portfolio/aj-schwartz-print-tapeworms-poster.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Band poster print in blue and fluorescent pink with hand-drawn lettering, print by AJ Schwartz">
+            </picture>
+          </a>
+        </li>
+        <li class="piece">
+          <a href="../assets/img/portfolio/aj-schwartz-print-rabbit-large.webp">
+            <picture>
+              <source type="image/webp" srcset="../assets/img/portfolio/aj-schwartz-print-rabbit.webp">
+              <img src="../assets/img/portfolio/aj-schwartz-print-rabbit.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Print of a rabbit held in tattooed hands inside a yellow oval, print by AJ Schwartz">
+            </picture>
+          </a>
+        </li>
+        <li class="piece">
+          <a href="../assets/img/portfolio/aj-schwartz-print-harley-poe-large.webp">
+            <picture>
+              <source type="image/webp" srcset="../assets/img/portfolio/aj-schwartz-print-harley-poe.webp">
+              <img src="../assets/img/portfolio/aj-schwartz-print-harley-poe.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Red and orange print of a wide-eyed figure playing guitar, with the words “Harley Poe,” print by AJ Schwartz">
+            </picture>
+          </a>
+        </li>
+        <li class="piece">
+          <a href="../assets/img/portfolio/aj-schwartz-print-vu-realm-installation-large.webp">
+            <picture>
+              <source type="image/webp" srcset="../assets/img/portfolio/aj-schwartz-print-vu-realm-installation.webp">
+              <img src="../assets/img/portfolio/aj-schwartz-print-vu-realm-installation.jpg" width="800" height="775" loading="lazy" decoding="async" alt="Wall of repeated corporate-style posters reading “VU_REALM” and “Work. Play. Live.,” some overprinted with skull masks and a handwritten manifesto, prints by AJ Schwartz">
+            </picture>
+          </a>
+        </li>
+        <li class="piece">
+          <a href="../assets/img/portfolio/aj-schwartz-print-deaths-head-moth-large.webp">
+            <picture>
+              <source type="image/webp" srcset="../assets/img/portfolio/aj-schwartz-print-deaths-head-moth.webp">
+              <img src="../assets/img/portfolio/aj-schwartz-print-deaths-head-moth.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Signed print of a death’s-head moth in black and yellow with a yellow halo, print by AJ Schwartz">
+            </picture>
+          </a>
+        </li>
+        <li class="piece">
+          <a href="../assets/img/portfolio/aj-schwartz-print-all-hail-weird-art-large.webp">
+            <picture>
+              <source type="image/webp" srcset="../assets/img/portfolio/aj-schwartz-print-all-hail-weird-art.webp">
+              <img src="../assets/img/portfolio/aj-schwartz-print-all-hail-weird-art.jpg" width="800" height="508" loading="lazy" decoding="async" alt="Two pink and blue collage prints of eyes and faces with the words “All Hail Weird Art,” prints by AJ Schwartz">
+            </picture>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Sketches & concepts: add a third gallery section here when ready. -->
+
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <p>Get in touch by email: <a href="mailto:avschwartz@ucsd.edu">avschwartz@ucsd.edu</a></p>
     </section>
   </main>
 

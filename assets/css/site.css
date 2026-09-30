@@ -482,16 +482,39 @@ a { color: var(--accent); }
   transform: rotate(-3deg);
 }
 
-.frame {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 4 / 3;
-  margin-bottom: 1rem;
-  border: 2px solid var(--ink);
-  background: var(--halftone-blue), var(--paper);
-  font-size: var(--step--1);
+.statement { margin-top: 1rem; }
+
+/* Portfolio: masonry columns of inked, slightly crooked frames */
+.gallery {
+  columns: 3 16rem;
+  column-gap: 2rem;
+  margin: 0;
+  padding: 0 8px 0 0;
+  list-style: none;
 }
-.frame span { background: var(--paper); padding: 0.1em 0.5em; }
+.piece {
+  position: relative;
+  isolation: isolate;
+  break-inside: avoid;
+  margin-bottom: 2rem;
+  padding: 10px;
+}
+.piece:nth-child(3n+1) { transform: rotate(-0.5deg); }
+.piece:nth-child(3n+2) { transform: rotate(0.4deg); }
+.piece::before,
+.piece::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  filter: url(#rough);
+  pointer-events: none;
+}
+.piece::before { border: 3px solid var(--ink); background: var(--paper); z-index: -1; }
+.piece::after { background: var(--halftone); transform: translate(8px, 8px); z-index: -2; }
+.piece a { display: block; }
+.piece img { display: block; width: 100%; height: auto; }
+.piece a:focus-visible { outline-offset: 4px; }
+
 
 /* 6. Wipe transition (driven by assets/js/wipe.js) ------------------------- */
 .wipe {
