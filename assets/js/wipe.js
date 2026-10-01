@@ -4,8 +4,8 @@
   Links opt in with data-wipe="research" | "illustration" | "home".
   They are ordinary links: if this script fails or is blocked, they still work.
 
-  - On the landing page, the chosen half grows out of the seam in the
-    middle and pushes it across the screen (sideways on wide screens,
+  - On the landing page, the chosen half grows out of the seam (wherever
+    hover has pushed it) and pushes it across the screen (sideways on wide screens,
     up/down on phones, where the halves are stacked).
   - From an inner page, Research wipes in from the left, Illustration
     from the right.
@@ -28,8 +28,16 @@
     if (target === 'research' || target === 'illustration') {
       var sign = target === 'research' ? -1 : 1;
       if (side) return { theme: target, axis: 'X', from: sign * 100 + '%', to: '0%' };
-      // Start at the seam. Research starts just left of the torn edge so it pushes it across.
-      if (split) return { theme: target, axis: 'X', from: sign > 0 ? '50%' : 'calc(-50% - 16px)', to: '0%' };
+      // Start at the seam (which hover may have pushed off-center). Research starts just
+      // left of the torn edge so it pushes it across.
+      if (split) {
+        var main = document.querySelector('.landing main');
+        var shift = main ? parseFloat(getComputedStyle(main).getPropertyValue('--shift')) || 0 : 0;
+        var seam = 50 + shift / window.innerWidth * 100;
+        return target === 'research'
+          ? { theme: target, axis: 'X', from: 'calc(' + (seam - 100) + '% - 16px)', to: '0%' }
+          : { theme: target, axis: 'X', from: seam + '%', to: '0%' };
+      }
       // Stacked halves: start at the horizontal seam between them.
       var ill = document.querySelector('.half--illustration');
       var seam = ill ? ill.getBoundingClientRect().top / window.innerHeight * 100 : 50;

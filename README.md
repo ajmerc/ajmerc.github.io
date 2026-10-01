@@ -10,7 +10,8 @@ Plain HTML, CSS, and a little vanilla JavaScript. There's no build step: push to
 ```
 index.html               Landing page: name, one-liner, and the Research / Illustration choice
 research/index.html      Research side
-illustration/index.html  Art side
+illustration/index.html  Art side: statement and digital illustration
+printmaking/index.html   Art side: prints
 assets/css/site.css      All styles. Colors and fonts are tokens at the top; each side is a "theme" block.
 assets/js/wipe.js        The wipe transition (links with data-wipe="…")
 assets/img/              Images (torn-edge.svg is the seam between the two halves)
@@ -32,7 +33,7 @@ In `research/index.html`, find the `Papers, posters, and talks` comment. Copy a 
 ## Adding a portfolio piece
 
 1. Make three versions of the image: an 800px-wide `.webp` and `.jpg`, and an 1800px-wide `.webp` ending in `-large`. Name them like the others in `assets/img/portfolio/` (for example `aj-schwartz-print-rabbit.webp`).
-2. In `illustration/index.html`, find the `Galleries` comment, copy a whole `<li class="piece"> … </li>` block into the right gallery, and change the file names, `width`/`height` (of the 800px version), and `alt` text. Describe what's in the picture and end with "digital illustration by AJ Schwartz" or "print by AJ Schwartz".
+2. In `illustration/index.html` (or `printmaking/index.html` for prints), find the `Galleries` comment, copy a whole `<li class="piece"> … </li>` block into the gallery, and change the file names, `width`/`height` (of the 800px version), and `alt` text. Describe what's in the picture and end with "digital illustration by AJ Schwartz" or "print by AJ Schwartz".
 
 ## Adding your profile links
 

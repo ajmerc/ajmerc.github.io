@@ -119,7 +119,17 @@ a { color: var(--accent); }
 }
 
 /* 4. Landing page ---------------------------------------------------------- */
+/* How far the seam is pushed from the middle (animated on hover). */
+@property --shift {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 .landing main {
+  --shift: 0px;
+  --seam: calc(50% + var(--shift));
+  transition: --shift .5s cubic-bezier(.3, .7, .2, 1);
   position: relative;
   isolation: isolate;
   min-height: 100vh;
@@ -127,7 +137,7 @@ a { color: var(--accent); }
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
-  background: linear-gradient(90deg, var(--r-paper) 50%, var(--i-paper) 50%);
+  background: linear-gradient(90deg, var(--r-paper) var(--seam), var(--i-paper) var(--seam));
   color: var(--r-ink);
 }
 
@@ -135,7 +145,7 @@ a { color: var(--accent); }
 .landing main::before {
   content: "";
   position: absolute;
-  inset: 0 0 0 50%;
+  inset: 0 0 0 var(--seam);
   background: var(--grain);
   z-index: -1;
   pointer-events: none;
@@ -146,7 +156,7 @@ a { color: var(--accent); }
   content: "";
   position: absolute;
   top: 0; bottom: 0;
-  left: calc(50% - 16px);
+  left: calc(var(--seam) - 16px);
   width: 16px;
   background: url("../img/torn-edge.svg") repeat-y 0 0 / 16px 120px;
   z-index: -1;
@@ -177,7 +187,7 @@ a { color: var(--accent); }
   inset: 0;
   color: var(--pink);
   transform: translate(0.05em, 0.035em);
-  clip-path: inset(0 0 0 50%);
+  clip-path: inset(0 0 0 calc(50% + var(--shift)));
   z-index: -1;
 }
 
@@ -218,16 +228,35 @@ a { color: var(--accent); }
 .half__label { font-family: var(--display); font-size: var(--step-3); line-height: 1.05; }
 .half__desc { max-width: 22rem; color: var(--muted); font-size: var(--step--1); }
 .half__cta { font-size: var(--step--1); font-weight: 600; }
-.half__cta span { display: inline-block; transition: transform .25s ease; }
+.half__cta span { display: inline-block; transition: transform .3s ease; }
+
+/* Hover / keyboard focus: the chosen half pushes the seam toward the other side,
+   a preview of the wipe. (wipe.js starts the wipe from wherever the seam is.) */
+@media (hover: hover) {
+  .landing main:has(.half--research:hover) { --shift: 5vw; }
+  .landing main:has(.half--illustration:hover) { --shift: -5vw; }
+}
+.landing main:has(.half--research:focus-visible) { --shift: 5vw; }
+.landing main:has(.half--illustration:focus-visible) { --shift: -5vw; }
 
 /* Research half: crisp, aligned left */
 .half--research { align-items: flex-start; }
-.half--research .half__label { font-weight: 700; letter-spacing: -0.01em; }
+.half--research .half__label {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  padding-bottom: 0.08em;
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 3px;
+  transition: background-size .35s ease;
+}
 .half--research .half__cta { color: var(--r-accent); }
-.half--research:hover .half__cta span { transform: translateX(6px); }
+.half--research:is(:hover, :focus-visible) .half__label { background-size: 100% 3px; }
+.half--research:is(:hover, :focus-visible) .half__cta span { transform: translateX(10px); }
 
 .turns { width: min(18rem, 100%); height: auto; margin-bottom: 1.25rem; color: var(--r-accent); }
 .turns text { font: 600 9px var(--sans); fill: var(--r-muted); }
+/* Speaker B's turns slide in tighter, like a smoother conversation */
+.turns .b rect { transition: transform .4s ease; }
+.half--research:is(:hover, :focus-visible) .turns .b rect { transform: translateX(-5px); }
 
 /* Illustration half: mirrored, printed, a bit crooked */
 .half--illustration { align-items: flex-end; text-align: right; }
@@ -235,10 +264,10 @@ a { color: var(--accent); }
   text-transform: uppercase;
   text-shadow: 3px 3px 0 var(--pink);
   transform: rotate(-1.5deg);
-  transition: text-shadow .25s ease;
+  transition: text-shadow .25s ease, transform .25s ease;
 }
-.half--illustration:hover .half__label { text-shadow: 6px 5px 0 var(--pink); }
-.half--illustration:hover .half__cta span { transform: translateX(-6px); }
+.half--illustration:is(:hover, :focus-visible) .half__label { text-shadow: 7px 6px 0 var(--pink); transform: rotate(-3deg) scale(1.04); }
+.half--illustration:is(:hover, :focus-visible) .half__cta span { transform: translateX(-10px); }
 
 /* Halftone blob in the illustration half */
 .half--illustration::before {
@@ -249,8 +278,11 @@ a { color: var(--accent); }
   -webkit-mask-image: radial-gradient(circle at 78% 42%, #000 0 8%, transparent 38%);
   mask-image: radial-gradient(circle at 78% 42%, #000 0 8%, transparent 38%);
   opacity: .55;
+  transform-origin: 78% 42%;
+  transition: opacity .35s ease, transform .5s ease;
   z-index: -1;
 }
+.half--illustration:is(:hover, :focus-visible)::before { opacity: .9; transform: scale(1.15); }
 
 /* Stack the halves on narrow screens. Breakpoint matches splitLayout in wipe.js. */
 @media (max-width: 47.99rem) {
@@ -458,6 +490,10 @@ a { color: var(--accent); }
   text-underline-offset: 3px;
 }
 .theme-illustration .site-nav a { text-decoration: none; }
+.site-nav a[aria-current="page"] { color: var(--ink); font-weight: 700; }
+.theme-illustration .site-nav a[aria-current="page"] { background: var(--yellow); padding: 0.1em 0.35em; }
+
+.see-also { margin: 0; padding-block: 0.5rem 1.5rem; font-weight: 700; }
 
 .theme-illustration .card { position: relative; isolation: isolate; padding: 1.25rem; }
 .theme-illustration .card:nth-child(odd) { transform: rotate(-0.6deg); }
