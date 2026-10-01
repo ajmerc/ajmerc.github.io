@@ -1,0 +1,558 @@
+/* ==========================================================================
+   ajmerc.github.io — one stylesheet for the whole site.
+
+   The Research and Illustration sides share the same grid, type scale and
+   page structure. Each side only swaps the tokens in its theme block
+   (colors, fonts, textures), so the two read as foils of each other.
+
+   Sections:
+     1. Tokens        4. Landing page
+     2. Themes        5. Inner pages
+     3. Base          6. Wipe transition
+   ========================================================================== */
+
+/* Self-hosted Bricolage Grotesque (SIL Open Font License, see assets/fonts/) */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/bricolage-grotesque-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/bricolage-grotesque-latin-700-normal.woff2") format("woff2");
+}
+
+/* 1. Tokens ---------------------------------------------------------------- */
+:root {
+  /* Research palette: calm, restrained */
+  --r-paper: #f8f7f3;
+  --r-ink: #17202a;
+  --r-muted: #525d69;
+  --r-accent: #2b5877;
+  --r-rule: #d7dade;
+
+  /* Illustration palette: newsprint + risograph inks */
+  --i-paper: #f1ebdf;
+  --i-ink: #151312;
+  --i-muted: #3f3a35;
+  --pink: #ff48b0;
+  --blue: #0078bf;
+  --yellow: #ffe800;
+
+  /* Shared type scale */
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(1.9rem, 3.5vw, 2.5rem);
+  --step-4: clamp(2.6rem, 8vw, 5.5rem);
+
+  --grotesk: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --heavy: "Arial Black", "Helvetica Neue", Helvetica, Impact, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Courier New", monospace;
+
+  /* Paper grain (tiny inline SVG noise) */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --halftone: radial-gradient(circle, var(--pink) 0 1.7px, transparent 2.2px) 0 0 / 9px 9px;
+  --halftone-blue: radial-gradient(circle, var(--blue) 0 1.4px, transparent 1.9px) 0 0 / 8px 8px;
+}
+
+/* 2. Themes ---------------------------------------------------------------- */
+.theme-research {
+  --paper: var(--r-paper);
+  --ink: var(--r-ink);
+  --muted: var(--r-muted);
+  --accent: var(--r-accent);
+  --rule: var(--r-rule);
+  --display: var(--grotesk);
+  --body: var(--grotesk);
+}
+
+.theme-illustration {
+  --paper: var(--i-paper);
+  --ink: var(--i-ink);
+  --muted: var(--i-muted);
+  --accent: var(--i-ink);
+  --rule: var(--i-ink);
+  --display: var(--heavy);
+  --body: var(--mono);
+}
+
+/* 3. Base ------------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper, var(--r-paper));
+  color: var(--ink, var(--r-ink));
+  font-family: var(--body, var(--grotesk));
+  font-size: var(--step-0);
+  line-height: 1.6;
+}
+
+body.theme-illustration { background-image: var(--grain); }
+
+a { color: var(--accent); }
+
+:focus-visible {
+  outline: 3px solid var(--ink, var(--r-ink));
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.container {
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}
+
+/* 4. Landing page ---------------------------------------------------------- */
+.landing main {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  background: linear-gradient(90deg, var(--r-paper) 50%, var(--i-paper) 50%);
+  color: var(--r-ink);
+}
+
+/* Grain on the illustration half only */
+.landing main::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 50%;
+  background: var(--grain);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Torn-paper seam between the halves */
+.landing main::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: calc(50% - 16px);
+  width: 16px;
+  background: url("../img/torn-edge.svg") repeat-y 0 0 / 16px 120px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.intro {
+  grid-column: 1 / -1;
+  padding: clamp(3rem, 12vh, 8rem) clamp(1rem, 4vw, 3rem) 2rem;
+  text-align: center;
+}
+
+.intro h1 {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  font-family: var(--grotesk);
+  font-weight: 700;
+  font-size: var(--step-4);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+/* The name straddles the seam: the right half picks up an off-register pink print. */
+.intro h1::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--pink);
+  transform: translate(0.05em, 0.035em);
+  clip-path: inset(0 0 0 50%);
+  z-index: -1;
+}
+
+.intro .role {
+  margin: 1.1rem 0 0;
+  font-size: var(--step-0);
+  letter-spacing: 0.02em;
+  color: var(--r-muted);
+}
+
+.intro .about {
+  max-width: 34rem;
+  margin: 0.75rem auto 0;
+  font-size: var(--step-1);
+  line-height: 1.45;
+}
+
+.choices {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.half {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  padding: 2rem clamp(1.5rem, 5vw, 4.5rem) clamp(2.5rem, 9vh, 5.5rem);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.half:focus-visible { outline-offset: -14px; }
+
+.half__label { font-family: var(--display); font-size: var(--step-3); line-height: 1.05; }
+.half__desc { max-width: 22rem; color: var(--muted); font-size: var(--step--1); }
+.half__cta { font-size: var(--step--1); font-weight: 600; }
+.half__cta span { display: inline-block; transition: transform .25s ease; }
+
+/* Research half: crisp, aligned left */
+.half--research { align-items: flex-start; }
+.half--research .half__label { font-weight: 700; letter-spacing: -0.01em; }
+.half--research .half__cta { color: var(--r-accent); }
+.half--research:hover .half__cta span { transform: translateX(6px); }
+
+.turns { width: min(18rem, 100%); height: auto; margin-bottom: 1.25rem; color: var(--r-accent); }
+.turns text { font: 600 9px var(--sans); fill: var(--r-muted); }
+
+/* Illustration half: mirrored, printed, a bit crooked */
+.half--illustration { align-items: flex-end; text-align: right; }
+.half--illustration .half__label {
+  text-transform: uppercase;
+  text-shadow: 3px 3px 0 var(--pink);
+  transform: rotate(-1.5deg);
+  transition: text-shadow .25s ease;
+}
+.half--illustration:hover .half__label { text-shadow: 6px 5px 0 var(--pink); }
+.half--illustration:hover .half__cta span { transform: translateX(-6px); }
+
+/* Halftone blob in the illustration half */
+.half--illustration::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--halftone);
+  -webkit-mask-image: radial-gradient(circle at 78% 42%, #000 0 8%, transparent 38%);
+  mask-image: radial-gradient(circle at 78% 42%, #000 0 8%, transparent 38%);
+  opacity: .55;
+  z-index: -1;
+}
+
+/* Stack the halves on narrow screens. Breakpoint matches splitLayout in wipe.js. */
+@media (max-width: 47.99rem) {
+  .landing main {
+    grid-template-columns: 1fr;
+    background: var(--r-paper);
+  }
+  .landing main::before,
+  .landing main::after,
+  .intro h1::after { display: none; }
+  .intro { padding-top: 3rem; }
+  .choices { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+  .half { min-height: 13rem; padding-block: 2rem; }
+  .half--illustration {
+    background: var(--grain), var(--i-paper);
+    border-top: 3px solid var(--i-ink);
+  }
+  .turns { width: min(14rem, 100%); margin-bottom: 0.5rem; }
+}
+
+/* 5. Inner pages ----------------------------------------------------------- */
+.site-header .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-block: 1.1rem;
+}
+
+.site-header { border-bottom: 1px solid var(--rule); }
+.theme-illustration .site-header { border-bottom-width: 3px; }
+
+.home-link { color: var(--ink); font-weight: 700; text-decoration: none; }
+.home-link:hover { text-decoration: underline; }
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--step--1);
+}
+.site-nav a { color: var(--muted); text-decoration: none; }
+.site-nav a:hover { color: var(--ink); text-decoration: underline; }
+
+.hero { padding-block: clamp(3rem, 10vw, 6.5rem) clamp(1.5rem, 4vw, 2.5rem); }
+
+.eyebrow {
+  margin: 0 0 1rem;
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: var(--step-4);
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero .role { margin: 1rem 0 0; font-size: var(--step-1); color: var(--muted); }
+.hero .lede { max-width: 38rem; margin: 1.5rem 0 0; font-size: var(--step-1); line-height: 1.5; }
+
+.section { padding-block: clamp(2rem, 5vw, 3.5rem); }
+.section h2 { margin: 0 0 1.5rem; font-family: var(--display); font-size: var(--step-2); }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.card h3 { margin: 0.5rem 0; font-family: var(--display); font-size: var(--step-1); line-height: 1.25; }
+.card p { margin: 0; color: var(--muted); }
+.card__num { font-size: var(--step--1); font-variant-numeric: tabular-nums; }
+
+/* Row of link "buttons" (hero, contact) */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--step--1);
+}
+.links a,
+.links .placeholder {
+  display: inline-block;
+  padding: 0.4em 0.9em;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+}
+.links a:hover { background: var(--ink); color: var(--paper); }
+.links .placeholder { border-style: dashed; border-color: var(--muted); color: var(--muted); }
+.prose .links { margin-top: 1rem; }
+
+/* Heading on the left, content on the right (wide screens) */
+.section--split { border-top: 1px solid var(--rule); }
+@media (min-width: 48rem) {
+  .section--split {
+    display: grid;
+    grid-template-columns: 13rem 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .section--split h2 { margin: 0; }
+}
+
+.prose { max-width: 42rem; }
+.prose p { margin: 0 0 1em; }
+.prose p:last-child { margin-bottom: 0; }
+.prose ul { margin: 0; padding-left: 1.2rem; }
+.prose li + li { margin-top: 0.5rem; }
+
+.subhead {
+  margin: 0 0 0.75rem;
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.timeline + .subhead { margin-top: 2rem; }
+
+/* Papers */
+.pubs, .timeline { margin: 0; padding: 0; list-style: none; }
+.pub {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-top: 1px solid var(--rule);
+}
+.pub:first-child { border-top: 0; padding-top: 0; }
+.pub__year { color: var(--muted); font-variant-numeric: tabular-nums; }
+.pub__cite, .pub__venue { margin: 0; max-width: 40rem; }
+.pub__venue { margin-top: 0.25rem; color: var(--muted); font-size: var(--step--1); }
+
+/* Dated rows: education, positions, outreach */
+.timeline li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 0.75rem;
+  border-top: 1px solid var(--rule);
+}
+.timeline li:first-child { border-top: 0; padding-top: 0; }
+.timeline li span:not(.timeline__date) { color: var(--muted); font-size: var(--step--1); }
+.timeline__date { flex: none; color: var(--muted); font-size: var(--step--1); font-variant-numeric: tabular-nums; }
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.75rem 2.5rem;
+}
+.skills p { margin: 0; }
+
+.placeholder-note {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border: 1px dashed var(--muted);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.site-footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 2.5rem;
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+.site-footer { border-top: 1px solid var(--rule); margin-top: 2rem; }
+.theme-illustration .site-footer { border-top-width: 3px; }
+
+/* Research: precise rules, lots of air */
+.theme-research .card { padding-top: 1rem; border-top: 1px solid var(--ink); }
+.theme-research .card__num { color: var(--accent); }
+.theme-research a { text-underline-offset: 3px; }
+
+/* Illustration: same skeleton, printed by hand */
+.theme-illustration .hero h1,
+.theme-illustration .section h2,
+.theme-illustration .card h3 { text-transform: uppercase; font-weight: 900; letter-spacing: -0.01em; }
+.theme-illustration .hero h1 { text-shadow: 0.05em 0.04em 0 var(--pink); }
+.theme-illustration .section h2 { display: inline-block; background: var(--yellow); padding: 0.1em 0.35em; transform: rotate(-1deg); }
+.theme-illustration a {
+  color: var(--ink);
+  text-decoration-color: var(--pink);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
+}
+.theme-illustration .site-nav a { text-decoration: none; }
+
+.theme-illustration .card { position: relative; isolation: isolate; padding: 1.25rem; }
+.theme-illustration .card:nth-child(odd) { transform: rotate(-0.6deg); }
+.theme-illustration .card:nth-child(even) { transform: rotate(0.5deg); }
+/* Wobbly inked border + offset halftone "shadow" */
+.theme-illustration .card::before,
+.theme-illustration .card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  filter: url(#rough);
+  pointer-events: none;
+}
+.theme-illustration .card::before { border: 3px solid var(--ink); background: var(--paper); z-index: -1; }
+.theme-illustration .card::after { background: var(--halftone); transform: translate(8px, 8px); z-index: -2; }
+.theme-illustration .card__num {
+  display: inline-block;
+  padding: 0.05em 0.45em;
+  background: var(--pink);
+  color: var(--ink);
+  font-family: var(--heavy);
+  transform: rotate(-3deg);
+}
+
+.statement { margin-top: 1rem; }
+
+/* Portfolio: masonry columns of inked, slightly crooked frames */
+.gallery {
+  columns: 3 16rem;
+  column-gap: 2rem;
+  margin: 0;
+  padding: 0 8px 0 0;
+  list-style: none;
+}
+.piece {
+  position: relative;
+  isolation: isolate;
+  break-inside: avoid;
+  margin-bottom: 2rem;
+  padding: 10px;
+}
+.piece:nth-child(3n+1) { transform: rotate(-0.5deg); }
+.piece:nth-child(3n+2) { transform: rotate(0.4deg); }
+.piece::before,
+.piece::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  filter: url(#rough);
+  pointer-events: none;
+}
+.piece::before { border: 3px solid var(--ink); background: var(--paper); z-index: -1; }
+.piece::after { background: var(--halftone); transform: translate(8px, 8px); z-index: -2; }
+.piece a { display: block; }
+.piece img { display: block; width: 100%; height: auto; }
+.piece a:focus-visible { outline-offset: 4px; }
+
+
+/* 6. Wipe transition (driven by assets/js/wipe.js) ------------------------- */
+.wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+}
+.wipe__panel { position: absolute; inset: 0; will-change: transform; }
+
+.wipe__panel--research { background: var(--r-paper); }
+.wipe__panel--research::after { /* crisp leading edge */
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 100%;
+  width: 2px;
+  background: var(--r-ink);
+}
+
+.wipe__panel--illustration { background: var(--grain), var(--i-paper); }
+.wipe__panel--illustration::before { /* torn leading edge */
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  right: 100%;
+  width: 16px;
+  background: url("../img/torn-edge.svg") repeat-y 0 0 / 16px 120px;
+}
+
+/* Phones: the halves are stacked, so the wipe moves vertically */
+.wipe__panel--y.wipe__panel--research::after { top: 100%; left: 0; right: 0; width: auto; height: 2px; }
+.wipe__panel--y.wipe__panel--illustration::before {
+  top: auto; bottom: 100%; left: 0; right: 0;
+  width: auto; height: 3px;
+  background: var(--i-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}

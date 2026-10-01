@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="120" viewBox="0 0 16 120" preserveAspectRatio="none">
+  <!-- Torn paper edge (tiles vertically). Pink sliver = off-register print layer. -->
+  <polygon fill="#ff48b0" points="3,0 0,7 5,14 1,22 6,29 2,37 0,44 4,52 1,59 6,67 0,75 3,82 0,90 5,98 1,105 4,113 3,120 16,120 16,0"/>
+  <polygon fill="#f1ebdf" points="6,0 3,7 8,14 4,22 9,29 5,37 2,44 7,52 4,59 9,67 3,75 6,82 2,90 8,98 4,105 7,113 6,120 16,120 16,0"/>
+</svg>
